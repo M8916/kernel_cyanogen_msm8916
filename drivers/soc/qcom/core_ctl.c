@@ -92,7 +92,11 @@ static void apply_need(struct cpu_data *f);
 static void wake_up_hotplug_thread(struct cpu_data *state);
 static void add_to_pending_lru(struct cpu_data *state);
 static void update_lru(struct cpu_data *state);
-
+static void __ref cpu_online_wrapper(int cpu)
+{
+        if (!cpu_online(cpu))
+		cpu_up(cpu);
+}
 /* ========================= sysfs interface =========================== */
 
 static ssize_t store_min_cpus(struct cpu_data *state,
@@ -353,6 +357,105 @@ static ssize_t show_not_preferred(struct cpu_data *state, char *buf)
 		c = &per_cpu(cpu_state, first_cpu);
 		count += snprintf(buf + count, PAGE_SIZE - count,
 				"\tCPU:%d %u\n", first_cpu, c->not_preferred);
+		first_cpu++;
+	}
+
+	return count;
+}
+
+static ssize_t store_cctoggle(struct cpu_data *state,
+				const char *buf, size_t count)
+{
+	unsigned int val;
+       if (kstrtouint(buf, 0, &val))
+                return -EINVAL;
+
+	val = !!val;
+
+	if (state->cctoggle == val)
+
+		return count;
+
+	state->cctoggle = val;
+		wake_up_hotplug_thread(state);
+		
+    if (state->cctoggle)
+	{
+	   int cpu;
+	   for_each_possible_cpu(cpu)
+       cpu_online_wrapper(cpu);
+	} 
+
+	return count;
+}
+
+static ssize_t show_cctoggle(struct cpu_data *state, char *buf)
+{
+	return snprintf(buf, PAGE_SIZE, "%u\n", state->cctoggle);
+}
+
+static ssize_t store_disable(struct cpu_data *state,
+				const char *buf, size_t count)
+{
+	unsigned int val;
+
+	if (kstrtouint(buf, 0, &val))
+		return -EINVAL;
+
+	val = !!val;
+
+	if (state->disabled == val)
+		return count;
+
+	state->disabled = val;
+
+	if (!state->disabled)
+		wake_up_hotplug_thread(state);
+
+
+	return count;
+}
+
+static ssize_t show_disable(struct cpu_data *state, char *buf)
+{
+	return snprintf(buf, PAGE_SIZE, "%u\n", state->disabled);
+}
+
+static ssize_t store_always_online_cpu(struct cpu_data *state,
+				const char *buf, size_t count)
+{
+	struct cpu_data *c;
+	unsigned int i, first_cpu;
+	unsigned int val[MAX_CPUS_PER_GROUP];
+	int ret;
+
+	ret = sscanf(buf, "%u %u %u %u", &val[0], &val[1], &val[2], &val[3]);
+	if (ret != 1 && ret != state->num_cpus)
+		return -EINVAL;
+
+	first_cpu = state->first_cpu;
+
+	for (i = 0; i < state->num_cpus; i++) {
+		c = &per_cpu(cpu_state, first_cpu);
+		c->always_online_cpu = val[i];
+		first_cpu++;
+	}
+
+	return count;
+}
+
+static ssize_t show_always_online_cpu(struct cpu_data *state, char *buf)
+{
+	struct cpu_data *c;
+	ssize_t count = 0;
+	unsigned int i, first_cpu;
+
+	first_cpu = state->first_cpu;
+
+	for (i = 0; i < state->num_cpus; i++) {
+		c = &per_cpu(cpu_state, first_cpu);
+		count += snprintf(buf + count, PAGE_SIZE - count,
+				"\tCPU:%d %u\n", first_cpu, c->always_online_cpu);
 		first_cpu++;
 	}
 

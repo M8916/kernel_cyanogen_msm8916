@@ -1,6 +1,6 @@
 #!/bin/bash
-export KBUILD_BUILD_USER="root"
-export KBUILD_BUILD_HOST="Macintosh_High-Sierra"
+#export KBUILD_BUILD_USER="root"
+#export KBUILD_BUILD_HOST="Macintosh_High-Sierra"
 export CROSS_COMPILE=/home/panchajanya/Kernel/Toolchains/aarch64-linux-android-7.2.1-uber/bin/aarch64-linux-android-
 export ARCH=arm64
 export SUBARCH=arm64

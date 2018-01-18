@@ -175,7 +175,7 @@ on property:persist.spectrum.profile=0
 
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
     write /sys/module/lowmemorykiller/parameters/minfree '14538,19384,24230,53306,72690,77536'
-    write /sys/fs/selinux/enforce 1
+    #write /sys/fs/selinux/enforce 1
     write /sys/module/mdss_fb/parameters/backlight_dimmer Y
 
     write /sys/kernel/sched/arch_power 1
@@ -269,10 +269,10 @@ on property:persist.spectrum.profile=1
 
 # Battery
 on property:persist.spectrum.profile=2
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "relaxed"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "relaxed"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "relaxed"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "relaxed"
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpu5/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor "interactive"
@@ -383,11 +383,11 @@ on property:persist.spectrum.profile=2
 
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
     write /sys/module/lowmemorykiller/parameters/minfree '14538,19384,24230,53306,72690,77536'
-    write /sys/fs/selinux/enforce 1
+    #write /sys/fs/selinux/enforce 1
     write /sys/module/mdss_fb/parameters/backlight_dimmer Y
 
-    write /sys/class/kgsl/kgsl-3d0/max_gpuclk 475000000
-    write /sys/class/kgsl/kgsl-3d0/min_gpuclk 50000000
+    write /sys/class/kgsl/kgsl-3d0/max_gpuclk 400000000
+    write /sys/class/kgsl/kgsl-3d0/min_gpuclk 19000000
     write /sys/module/adreno_idler/parameters/adreno_idler_idlewait 25
     write /sys/module/adreno_idler/parameters/adreno_idler_idleworkload 7000
     write /sys/module/adreno_idler/parameters/adreno_idler_active Y

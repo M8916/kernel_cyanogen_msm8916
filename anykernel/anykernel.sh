@@ -60,6 +60,7 @@ append_file fstab.tuna "usbdisk" fstab;
 
 # Add Spectrum Profile
 ui_print "Pushing Spectrum Profiles...";
+ui_print "Scanning system for Existing Profiles to Update!";
 found=$(find init.rc -type f | xargs grep -oh "import /init.spectrum.rc");
 if [ "$found" != 'import /init.spectrum.rc' ]; then
 	#append the new lines for this option at the bottom

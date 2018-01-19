@@ -3152,7 +3152,6 @@ static int set_low_power_mode(struct iris_device *radio, int power_mode)
 			memcpy(&grp_3a, &radio->rds_grp,
 					sizeof(struct hci_fm_rds_grp_req));
 			/* Disable 3A group */
-			grp_3a.rds_grp_enable_mask &= ~FM_RDS_3A_GRP;
 			retval = hci_fm_rds_grp(&grp_3a, radio->fm_hdev);
 			if (retval < 0)
 				FMDERR("error in disable 3A group mask\n");

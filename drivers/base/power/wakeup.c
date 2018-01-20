@@ -19,36 +19,37 @@
 
 #include "power.h"
 
-static bool enable_si_ws = false;
+static bool enable_si_ws = true;
 module_param(enable_si_ws, bool, 0644);
-static bool enable_smb135x_wake_ws = false;
+static bool enable_smb135x_wake_ws = true;
 module_param(enable_smb135x_wake_ws, bool, 0644);
-static bool enable_wlan_rx_wake_ws = false;
+static bool enable_wlan_rx_wake_ws = true;
 module_param(enable_wlan_rx_wake_ws, bool, 0644);
-static bool enable_wlan_ctrl_wake_ws = false;
+static bool enable_wlan_ctrl_wake_ws = true;
 module_param(enable_wlan_ctrl_wake_ws, bool, 0644);
-static bool enable_wlan_wake_ws = false;
+static bool enable_wlan_wake_ws = true;
 module_param(enable_wlan_wake_ws, bool, 0644);
-static bool enable_bluedroid_timer_ws = false;
+static bool enable_bluedroid_timer_ws = true;
 module_param(enable_bluedroid_timer_ws, bool, 0644);
-static bool enable_qcom_rx_wakelock_ws = false;
-module_param(enable_qcom_rx_wakelock_ws, bool, 0644);
-static bool enable_msm_hsic_ws = false;
-module_param(enable_msm_hsic_ws, bool, 0644);
-static bool enable_qcom_rx_wakelock_ws = false;
-static bool enable_qcom_rx_wakelock_ws = false;
-module_param(enable_qcom_rx_wakelock_ws, bool, 0644);
-static bool enable_wlan_extscan_wl_ws = false;
-module_param(enable_wlan_extscan_wl_ws, bool, 0644);
-static bool enable_ipa_ws = false;
+static bool enable_ipa_ws = true;
 module_param(enable_ipa_ws, bool, 0644);
-static bool enable_wlan_ws = false;
+static bool enable_qcom_rx_wakelock_ws = true;
+module_param(enable_qcom_rx_wakelock_ws, bool, 0644);
+static bool enable_msm_hsic_ws = true;
+module_param(enable_msm_hsic_ws, bool, 0644);
+static bool enable_qcom_rx_wakelock_ws = true;
+module_param(enable_qcom_rx_wakelock_ws, bool, 0644);
+static bool enable_wlan_extscan_wl_ws = true;
+module_param(enable_wlan_extscan_wl_ws, bool, 0644);
+static bool enable_ipa_ws = true;
+module_param(enable_ipa_ws, bool, 0644);
+static bool enable_wlan_ws = true;
 module_param(enable_wlan_ws, bool, 0644);
-static bool enable_timerfd_ws = false;
+static bool enable_timerfd_ws = true;
 module_param(enable_timerfd_ws, bool, 0644);
-static bool enable_netlink_ws = false;
+static bool enable_netlink_ws = true;
 module_param(enable_netlink_ws, bool, 0644);
-static bool enable_netmgr_wl_ws = false;
+static bool enable_netmgr_wl_ws = true;
 module_param(enable_netmgr_wl_ws, bool, 0644);
 
 /*

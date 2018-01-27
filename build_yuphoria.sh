@@ -42,7 +42,7 @@ mv $KERNEL_DIR/arch/arm64/boot/dt.img dt.img
 echo "Making Zip"
 zip -r AzurE-Oreo-$BUILD_TIME *
 cd ..
-mv anykernel/AzurE-Oreo-lettuce-$BUILD_TIME.zip /home/panchajanya/Kernel/Zips/Azure-Builds/Oreo-Builds/AzurE-Oreo-$BUILD_TIME.zip
-echo -e "Kernel is named as $yellow AzurE-Oreo-$BUILD_TIME.zip $nocol and can be found at $yellow /home/panchajanya/Kernel/Zips/Azure-Builds/Oreo-Builds.$nocol"
+mv anykernel/AzurE-Oreo-$BUILD_TIME.zip /home/panchajanya/Kernel/Zips/Azure-Builds/Oreo-Builds/AzurE-Oreo-lettuce-$BUILD_TIME.zip
+echo -e "Kernel is named as $yellow AzurE-Oreo-lettuce-$BUILD_TIME.zip $nocol and can be found at $yellow /home/panchajanya/Kernel/Zips/Azure-Builds/Oreo-Builds.$nocol"
 fi
 cd 

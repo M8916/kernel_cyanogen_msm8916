@@ -35,7 +35,6 @@ on property:sys.boot_completed=1
 # Build Prop Tweaks
     setprop wifi.supplicant_scan_interval 180
     setprop ro.ril.power_collapse 1
-    setprop ro.ril.disable.power.collapse
     setprop pm.sleep_mode 1
     setprop ro.config.hw_power_saving=true
     
@@ -233,7 +232,7 @@ on property:persist.spectrum.profile=2
     write /sys/module/lazyplug/parameters/touch_boost_active 0
     write /sys/kernel/AiO_HotPlug/big_cores 0
     write /sys/kernel/AiO_HotPlug/LITTLE_cores 4
-    write /sys/kernel/AiO_HotPlug/toggle 1
+    write /sys/kernel/AiO_HotPlug/toggle 0
     write /sys/module/lazyplug/parameters/lazyplug_active 0
     write /sys/module/lazyplug/parameters/nr_run_profile_sel 4
     write /sys/module/lazyplug/parameters/nr_run_hysteresis 5
